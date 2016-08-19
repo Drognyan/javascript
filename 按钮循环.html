@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>按钮循环</title>
+    <style media="screen">
+      li{
+        line-height:50px;
+      }
+      button{
+        margin:0 4px;
+        font-size:16px;
+        width:50px;
+        height:50px;
+        line-height:30px;
+        text-align:center;
+        outline: none;
+      }
+      span{
+        display:inline-block;
+        width:100px;
+        height:50px;
+        background:cyan;
+        font-size:16px;
+        line-height:50px;
+        margin-top:3px;
+        color:purple;
+      }
+    </style>
+  </head>
+  <body>
+  <ul id='list'>
+    <li>
+      <span>网页设计师</span>
+      <button>🔼</button><button>🔽</button>
+    </li>
+    <li>
+      <span>前端工程师</span>
+      <button>🔼</button><button>🔽</button>
+    </li>
+    <li><span>后端工程师</span>
+      <button>🔼</button><button>🔽</button>
+    </li>
+    <li><span>产品经理</span>
+      <button>🔼</button><button>🔽</button>
+    </li>
+    <li><span>网络监测</span>
+      <button>🔼</button><button>🔽</button>
+    </li>
+    <li><span>someone</span>
+      <button>🔼</button><button>🔽</button>
+    </li>
+  </ul>
+    <script type="text/javascript">
+      var oList=document.getElementById('list');
+      var aLi=oList.getElementsByTagName('li');
+
+      function move(){
+
+        for(var i=0; i<aLi.length; i++){
+        var aBtn=aLi[i].getElementsByTagName('button');
+
+        aBtn[0].onclick=function(){
+
+          var pre=this.parentNode;//查找父元素节点
+          var next=pre.previousElementSibling;
+          console.log(pre);
+          if(next === null){
+            return alert('已经到最上面了。');
+          }
+          oList.insertBefore(pre,next);
+        }
+        aBtn[1].onclick=function(){
+            var pre=this.parentNode;
+            var next=pre.nextElementSibling;
+            if(next === null){
+              alert('已经到最下面了。');
+              return;
+            }
+            oList.insertBefore(next,pre);
+        }
+      }
+    }
+      move();
+    </script>
+  </body>
+</html>
